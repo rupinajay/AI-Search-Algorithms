@@ -90,4 +90,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-This project is inspired by various resources on artificial intelligence and search algorithms, including textbooks, online courses, and open-source contributions from the community. Special thanks to all contributors for their efforts in enhancing this repository.
+This project is inspired by various resources on artificial intelligence and search algorithms, including textbooks, online courses, and open-source contributions from the community. 
