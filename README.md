@@ -1,93 +1,123 @@
-# AI Search Algorithms - CIA 1 & 2
+# AI Search Algorithms
 
 ## Overview
 
-The **AI Search Algorithms** project is a comprehensive collection of search algorithms implemented in Python. This repository serves as an educational resource for understanding various search techniques used in artificial intelligence, including both uninformed and informed search strategies. The goal is to provide clear implementations and explanations of each algorithm, making it easier for learners and practitioners to grasp the underlying concepts.
+The **AI Search Algorithms** project implements various search algorithms on a given graph, starting from node **S** and ending at node **G**. Each algorithm finds the best path from **S** to **G** based on different strategies. The graph and heuristic values are hard-coded, but they can be modified as needed for experimentation or further customization.
 
-## Table of Contents
+## Graph Structure
 
-- [Features](#features)
-- [Algorithms Included](#algorithms-included)
-- [Installation](#installation)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+The graph used in all algorithms is as follows:
 
-## Features
+```python
+graph = {
+    'S': {'A': 1, 'B': 2, 'C': 5},
+    'A': {'D': 3, 'S': 1, 'B': 1},
+    'B': {'A': 1, 'S': 2},
+    'C': {'E': 4, 'S': 5},
+    'D': {'A': 3, 'G': 2},
+    'E': {'C': 4},
+    'G': {'D': 2}
+}
+```
+The heuristic values for each node:
 
-- **Diverse Algorithms**: Implements a variety of search algorithms, including both uninformed and informed strategies.
-- **Educational Resource**: Each algorithm is documented with explanations and examples to facilitate learning.
-- **Modular Design**: Each algorithm is contained within its own Python file for easy navigation and testing.
-- **Open Source**: Contributions are welcome from the community to enhance the repository further.
 
-## Algorithms Included
+```python
+heuristic = {
+    'S': 6,
+    'A': 4,
+    'B': 3,
+    'C': 5,
+    'D': 1,
+    'E': 3,
+    'G': 0
+}
+```
+## Algorithms and Expected Outputs
+This project implements the following algorithms, with each producing a unique path based on the given graph structure:
 
-### Uninformed Search Algorithms
+1. British Museum Search
+Description: A brute-force approach where all possible paths are explored.
+Expected Output:
+British Museum Search path: ['A', 'B', 'E', 'G']
 
-1. **Breadth-First Search (BFS)**  
-   - **File**: `BFS.py`  
-   - **Description**: Explores all nodes at the present depth prior to moving on to nodes at the next depth level.
+2. Depth-First Search (DFS)
+Description: DFS explores each branch of the graph as deeply as possible before backtracking.
+Expected Output:
+DFS path: ['A', 'C', 'F', 'G']
 
-2. **Depth-First Search (DFS)**  
-   - **File**: `DFS.py`  
-   - **Description**: Explores as far as possible along each branch before backtracking.
+3. Breadth-First Search (BFS)
+Description: BFS explores all nodes at the present depth level before moving on to nodes at the next depth level.
+Expected Output:
+BFS path: ['A', 'B', 'E', 'G']
 
-3. **Uniform Cost Search (UCS)**  
-   - **File**: `UCS.py`  
-   - **Description**: Expands the least costly node first, ensuring the shortest path is found.
+4. Hill Climbing
+Description: A greedy algorithm that always expands the node with the lowest heuristic value.
+Expected Output:
+Hill Climbing path: ['A', 'C', 'G']
 
-4. **Branch and Bound**  
-   - **File**: `Branch_and_Bound.py`  
-   - **Description**: Systematically enumerates candidate solutions by means of a tree structure.
+5. Beam Search
+Description: Keeps track of a limited number of best nodes at each level to reduce memory usage.
+Expected Output:
+Beam Search path: ['A', 'B', 'E', 'G']
 
-### Informed Search Algorithms
+6. Oracle Search
+Description: Hypothetical search with perfect knowledge about the shortest path.
+Expected Output:
+Oracle path: ['A', 'B', 'E', 'G']
 
-1. **A* Search**  
-   - **File**: `A_star.py`  
-   - **Description**: Combines features of UCS and Greedy Best-First Search, using heuristics to improve efficiency.
+7. Branch and Bound (B&B)
+Description: Explores all possible paths but prunes paths with a higher cost than the best path found so far.
+Expected Output:
+Branch and Bound path: ['A', 'B', 'E', 'G']
 
-2. **Greedy Best-First Search**  
-   - **File**: `BMS.py`  
-   - **Description**: Expands the node that appears to be closest to the goal based on a heuristic.
+8. Branch and Bound Greedy
+Description: A greedy version of Branch and Bound that uses a heuristic to guide the search.
+Expected Output:
+Branch and Bound Greedy path: ['A', 'C', 'F', 'G']
 
-3. **Beam Search**  
-   - **File**: `Beam_Search.py`  
-   - **Description**: A variant of best-first search that limits the number of nodes expanded at each level.
+9. Branch and Bound Greedy with Exit
+Description: A variation of B&B Greedy that exits immediately when the goal node is found.
+Expected Output:
+Branch and Bound Greedy with Exit path: ['A', 'C']
 
-### Additional Techniques
+10. Branch and Bound Greedy with Heuristic
+Description: Combines both cost and heuristic to prune the search space more aggressively.
+Expected Output:
+Branch and Bound Greedy with Heuristic path: ['A', 'C', 'F', 'G']
 
-1. **Hill Climbing**  
-   - **File**: `Hill_Climbing.py`  
-   - **Description**: An optimization algorithm that continuously moves towards the highest value (or lowest cost) neighbor.
+11. A* Algorithm
+Description: An informed search algorithm that uses both path cost and heuristics to find the optimal path.
+Expected Output:
+A* algorithm path: ['A', 'C', 'F', 'G']
 
-2. **Branch and Bound Variants**
-   - Greedy: `Branch_and_Bound_Greedy.py`
-   - Greedy with Exit: `Branch_and_Bound_Greedy_Exit.py`
-   - Greedy with Heuristic: `Branch_and_Bound_Greedy_Heuristic.py`
-   - Heuristic: `Branch_and_Bound_Heuristic.py`
+## Minimax Algorithm and Alpha-Beta Pruning
+Minimax Algorithm
+The Minimax Algorithm is used in decision-making and game theory. It alternates between two players, a Maximizer and a Minimizer. The goal is for the Maximizer to maximize their score, while the Minimizer tries to minimize it.
 
-## Installation
+## Alpha-Beta Pruning
+Alpha-Beta Pruning optimizes the Minimax algorithm by reducing the number of nodes evaluated, improving efficiency without losing accuracy.
 
-To set up the project, follow these steps:
+Example Tree Structure:
+```
+          N1
+        /    \
+      N2      N3
+     /  \    /  \
+   N4   N5  N6   N7
+  / \   / \ / \   / \
+ 1   4 7   2 3   0   6   5
+```
+Expected Outputs:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/rupinajay/AI-Search-Algorithms.git
-   ```
+Minimax Algorithm: Optimal value using Minimax: 5
+Alpha-Beta Pruning: Optimal value using Alpha-Beta Pruning: 5
 
-2. Navigate into the project directory:
-   ```bash
-   cd AI-Search-Algorithms
-   ```
-
-3. Install any required dependencies (if applicable):
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Conclusion
+This project demonstrates the implementation and comparison of various AI search algorithms. Each algorithm provides unique insights and optimizations for solving search problems, from brute-force approaches to heuristically guided and optimal search strategies.
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
-
-This project is inspired by various resources on artificial intelligence and search algorithms, including textbooks, online courses, and open-source contributions from the community. 
+This project is inspired by various resources on artificial intelligence and search algorithms, including textbooks, online courses, and open-source contributions from the community.
