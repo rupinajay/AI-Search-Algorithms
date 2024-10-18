@@ -9,9 +9,6 @@ The **AI Search Algorithms** project is a comprehensive collection of search alg
 - [Features](#features)
 - [Algorithms Included](#algorithms-included)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -87,43 +84,6 @@ To set up the project, follow these steps:
    pip install -r requirements.txt
    ```
 
-## Usage
-
-Each algorithm is implemented in its own Python file. You can run them individually to see how they work. For example, to run the A* search algorithm, use:
-
-```bash
-python A_star.py
-```
-
-### Example Usage
-
-Here’s a brief example of how you might call one of the algorithms:
-
-```python
-from A_star import AStar
-
-# Initialize your problem here
-problem = YourProblemClass()
-
-# Create an instance of AStar
-search = AStar(problem)
-
-# Execute the search
-solution = search.execute()
-
-print("Solution found:", solution)
-```
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for improvements or additional algorithms to include, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push your changes to your forked repository.
-5. Submit a pull request detailing your changes.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -131,7 +91,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 This project is inspired by various resources on artificial intelligence and search algorithms, including textbooks, online courses, and open-source contributions from the community. Special thanks to all contributors for their efforts in enhancing this repository.
-
----
-
-Feel free to modify this README further based on specific details or additional features you may want to highlight in your project!
